@@ -37,11 +37,11 @@ class ViewController: UIViewController {
     @IBAction func add(_ sender: UIControl?) {
         let name = UIImage.names.randomItem()
         let color = UIColor.colors.randomItem()
-        let node = Node(text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
+        let node = Node(id: 1,text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
         magnetic.addChild(node)
         
         // Image Node: image displayed by default
-        // let node = ImageNode(text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
+        // let node = ImageNode(id: 1,text: name.capitalized, image: UIImage(named: name), color: color, radius: 40)
         // magnetic.addChild(node)
     }
     
@@ -86,6 +86,8 @@ extension ViewController: MagneticDelegate {
     
     func magnetic(_ magnetic: Magnetic, didSelect node: Node) {
         print("didSelect -> \(node)")
+        print("id -> \(String(describing: node.id))")
+        print("name -> \(String(describing: node.text))")
     }
     
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node) {

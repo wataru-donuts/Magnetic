@@ -30,6 +30,9 @@ import SpriteKit
         return sprite
     }()
     
+    
+    open var id: Int?
+    
     /**
      The text displayed by the node.
      */
@@ -94,7 +97,7 @@ import SpriteKit
      
      - Returns: A new node.
      */
-    public init(text: String?, image: UIImage?, color: UIColor, path: CGPath, marginScale: CGFloat = 1.01) {
+    public init(id: Int, text: String?, image: UIImage?, color: UIColor, path: CGPath, marginScale: CGFloat = 1.01) {
         super.init(path: path)
         
         self.physicsBody = {
@@ -109,7 +112,7 @@ import SpriteKit
         self.strokeColor = .white
         _ = self.sprite
         _ = self.text
-        configure(text: text, image: image, color: color)
+        configure(id: id,text: text, image: image, color: color)
     }
     
     /**
@@ -124,16 +127,17 @@ import SpriteKit
      
      - Returns: A new node.
      */
-    public convenience init(text: String?, image: UIImage?, color: UIColor, radius: CGFloat, marginScale: CGFloat = 1.01) {
+    public convenience init(id: Int,text: String?, image: UIImage?, color: UIColor, radius: CGFloat, marginScale: CGFloat = 1.01) {
         let path = SKShapeNode(circleOfRadius: radius).path!
-        self.init(text: text, image: image, color: color, path: path, marginScale: marginScale)
+        self.init(id: id, text: text, image: image, color: color, path: path, marginScale: marginScale)
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func configure(text: String?, image: UIImage?, color: UIColor) {
+    open func configure(id: Int?, text: String?, image: UIImage?, color: UIColor) {
+        self.id = id
         self.text = text
         self.image = image
         self.color = color
